@@ -2,6 +2,7 @@ package com.example.back.controller;
 
 import com.example.back.dto.Code2faDTO;
 import com.example.back.dto.request.AuthRequest;
+import com.example.back.dto.request.SignUpRequest;
 import com.example.back.dto.response.AuthResponse;
 import com.example.back.model.User;
 import com.example.back.security.AuthenticationService;
@@ -24,7 +25,7 @@ public class AuthenticationController {
     private final CodeService codeService;
 
     @PostMapping("/signup")
-    public ResponseEntity<Void> signUp(@RequestBody AuthRequest request) {
+    public ResponseEntity<Void> signUp(@RequestBody SignUpRequest request) {
         User user = authenticationService.signUp(request);
 
         if (user == null) {
@@ -42,7 +43,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login2FA")
-    public ResponseEntity<AuthResponse> signIn(@RequestBody Code2faDTO request) {
+    public ResponseEntity<AuthResponse> signInWith2FA(@RequestBody Code2faDTO request) {
         return ResponseEntity.ok(authenticationService.signInWith2FA(request));
     }
 

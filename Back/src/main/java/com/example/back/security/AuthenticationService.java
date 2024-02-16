@@ -2,6 +2,7 @@ package com.example.back.security;
 
 import com.example.back.dto.Code2faDTO;
 import com.example.back.dto.request.AuthRequest;
+import com.example.back.dto.request.SignUpRequest;
 import com.example.back.dto.response.AuthResponse;
 import com.example.back.model.Token;
 import com.example.back.model.User;
@@ -43,8 +44,11 @@ public class AuthenticationService {
     private final RoleService roleService;
     private final UserService userService;
 
-    public User signUp(AuthRequest request) {
+    public User signUp(SignUpRequest request) {
         User user = User.builder()
+                .firstName(request.firstName())
+                .lastName(request.lastName())
+                .surname(request.surname())
                 .email(request.email())
                 .password(passwordEncoder.encode(request.password()))
                 .role(roleService.getRole(RoleType.USER))
