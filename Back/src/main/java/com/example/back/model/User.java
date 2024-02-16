@@ -32,6 +32,10 @@ public class User {
     @Column(name = "password", length = 220, nullable = false)
     private String password;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
     @ManyToMany
     @JoinTable(
             name = "user_quizzez",

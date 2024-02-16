@@ -5,22 +5,27 @@ spring:
   mvc:
     cors:
       allowed-origins: http://localhost:4200
+
   mail:
     host: smtp.gmail.com
     port: 587
-#    username: kat944166@gmail.com
-#    password: auffsjlmiczsejpl
+    username: kat944166@gmail.com
+    password: auffsjlmiczsejpl
     protocol: smtp
-    auth: true
     properties:
-      mail.smtp.starttls.enable: true
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
     connectiontimeout: 5000
     timeout: 3000
     writetimeout: 5000
 
   datasource:
     username: postgres
-    password: 121212
+    password: root
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/dbquiz?currentSchema=webschema
 
@@ -37,7 +42,7 @@ spring:
 
   flyway:
     user: postgres
-    password: 121212
+    password: root
     default-schema: webschema
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/dbquiz?currentSchema=webschema
